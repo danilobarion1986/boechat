@@ -13,7 +13,10 @@ module Boechat
     #     end
     #   end
     module Constants
-      BOECHAT_CONSTANT = :value
+      # Source: https://github.com/semver/semver/issues/232
+      # rubocop:disable Metrics/LineLength
+      REGEX_SEMVER_FORMAT = /^(v\d*|0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\+[0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*)?$/
+      # rubocop:enable Metrics/LineLength
     end
   end
 end
