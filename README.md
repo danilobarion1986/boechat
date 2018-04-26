@@ -1,3 +1,5 @@
-# ruby_gem_boilerplate
+## Boechat
 
-Boilerplate for a Ruby Gem
+Version verifier for BFFs and APIs.
+
+Verify the version of external APIs that your project depends on!
