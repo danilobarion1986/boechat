@@ -1,0 +1,30 @@
+AllCops:
+  TargetRubyVersion: '2.5'
+
+Lint/UselessAssignment:
+  Exclude:
+    - 'lib/boechat/internal/version.rb'
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/ModuleLength:
+  Exclude:
+    - '**/*_spec.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*_spec.rb'
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Lint/HandleExceptions:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'

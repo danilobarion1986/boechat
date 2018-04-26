@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
   require 'yaml'
-  rubies = YAML.load(File.read(File.join(__dir__, '..', '.travis.yml')))['rvm']
+  rubies = YAML.safe_load(File.read(File.join(__dir__, '..', '.travis.yml')))['rvm']
   latest_mri = rubies.select { |v| v =~ /\A\d+\.\d+.\d+\z/ }.max
 
   if RUBY_VERSION == latest_mri
@@ -11,7 +13,7 @@ if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
   end
 end
 
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'rspec/version'
 
 begin
@@ -30,19 +32,16 @@ end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  if RSpec::Version::STRING >= '4.0.0'
-    raise 'This condition block can be safely removed'
-  else
-    config.expect_with :rspec do |expectations|
-      expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-    end
-
-    config.mock_with :rspec do |mocks|
-      mocks.verify_partial_doubles = true
-    end
-
-    config.shared_context_metadata_behavior = :apply_to_host_groups
+  raise 'This condition block can be safely removed' unless RSpec::Version::STRING >= '4.0.0'
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
+
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+
+  config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.after do
     Test.remove_constants
