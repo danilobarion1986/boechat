@@ -3,7 +3,7 @@
 module Boechat
   module Internal
     # Custom error classes for your gem
-    class BoechatCustomError < StandardError
+    class BoechatError < StandardError
       def initialize(message)
         super(message.to_s)
       end

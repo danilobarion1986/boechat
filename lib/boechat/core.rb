@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'boechat/core/version'
+require 'boechat/internal/version'
 
 # :nodoc:
 module MyGem
