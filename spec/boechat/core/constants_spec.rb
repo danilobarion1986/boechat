@@ -7,8 +7,8 @@ RSpec.describe Boechat::Internal::Constants do
     class ClassWithConstants
       include Boechat::Internal::Constants
 
-      def boechat_constant
-        BOECHAT_CONSTANT
+      def regex_semver_format
+        REGEX_SEMVER_FORMAT
       end
     end
   end
@@ -20,7 +20,7 @@ RSpec.describe Boechat::Internal::Constants do
   subject { ClassWithConstants.new }
 
   it 'makes constants available in your class' do
-    expect(subject.boechat_constant).to be Boechat::Internal::Constants::BOECHAT_CONSTANT
-    expect(subject.boechat_constant).to eql(:value)
+    expect(subject.regex_semver_format).to be Boechat::Internal::Constants::REGEX_SEMVER_FORMAT
+    expect(subject.regex_semver_format).to eql(/^(v\d*|0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\+[0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*)?$/)
   end
 end
