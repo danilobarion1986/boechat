@@ -7,6 +7,8 @@ Lint/UselessAssignment:
 
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - '**/*_spec.rb'
 
 Metrics/ModuleLength:
   Exclude:
