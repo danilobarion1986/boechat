@@ -1,0 +1,3 @@
+# Describe all API healthcheck/status endpoints's that your application depends on!
+- http://example-api.com/status
+- http://api.other.com/healthcheck
