@@ -2,7 +2,7 @@
 
 module Boechat
   module Core
-    module Api
+    module Service
       # Classe encapsula todas as requisicoes do Typhoeus e executa conforme a chamada
       class Requests
         attr_reader :requests

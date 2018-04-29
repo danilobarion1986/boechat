@@ -4,7 +4,7 @@ require_relative './request'
 
 module Boechat
   module Core
-    module Api
+    module Service
       # Classe que representa uma requisicao nula, para nao precisar tratar valores nulos
       class NilRequest < Request
         def service_uri

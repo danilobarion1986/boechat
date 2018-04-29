@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   # Dependencies that your gem needs at runtime
   spec.add_runtime_dependency 'concurrent-ruby', '~> 1.0'
   spec.add_runtime_dependency 'dry-configurable', '~> 0.7.0'
+  spec.add_runtime_dependency 'oj', '~> 3.5.0'
   spec.add_runtime_dependency 'typhoeus', '~> 1.3.0'
 
   # Dependencies that your gem needs only for development

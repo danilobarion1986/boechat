@@ -8,7 +8,7 @@ require 'json'
 
 module Boechat
   module Core
-    module Api
+    module Service
       # Class responsible for call the endpoints and return all the results
       class VersionVerifier
         attr_reader :config
