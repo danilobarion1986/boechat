@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './request'
-require_relative './requests'
+require_relative './request_list'
 require_relative '../config_reader'
 require 'typhoeus'
 require 'json'
@@ -11,37 +11,26 @@ module Boechat
     module Service
       # Class responsible for call the endpoints and return all the results
       class VersionVerifier
-        attr_reader :config
+        attr_reader :config, :request_list
 
         def initialize
-          @config = ConfigReader.new.call
+          @config = ConfigReader.new.call.config
+          build_request_list
         end
 
-        def call
-          results = call_endpoints
-
-          results.map do |response|
-            JSON.parse(response.body)
-          end
+        def call(service = nil)
+          @request_list.call(service)
         end
 
         private
 
-        def call_endpoints
-          requests = create_requests
-          [].tap do |result|
-            requests.each_pair do |_k, v|
-              result << Typhoeus.get(v)
-            end
-          end
-        end
+        def build_request_list
+          @request_list = RequestList.new
 
-        def create_requests
-          requests = Requests.new
-          @config.each_with_index do |config, index|
-            requests[index.to_s] = config
+          @config['services'].each do |service|
+            key, value = service.first
+            @request_list.requests[key] = Request.new(value['url'])
           end
-          requests.requests
         end
       end
     end
