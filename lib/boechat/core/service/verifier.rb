@@ -10,7 +10,7 @@ module Boechat
   module Core
     module Service
       # Class responsible for call the endpoints and return all the results
-      class VersionVerifier
+      class Verifier
         attr_reader :config, :request_list
 
         def initialize

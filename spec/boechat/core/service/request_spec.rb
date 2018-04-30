@@ -26,10 +26,18 @@ RSpec.describe Boechat::Core::Service::Request do
       { 'User-Agent' => 'Boechat - API Version Verifier' }
     end
 
-    context 'when no custom header is given' do
+    context 'when custom header IS NOT given' do
+      it 'returns only basic header info' do
+        request = subject.new(url)
+
+        expect(request.send(:http_header)).to eql(basic_header)
+      end
+    end
+
+    context 'when custom header IS given' do
       it 'returns only basic header info' do
         request = subject.new(url, headers: { custom_header_key: 'test' })
-        binding.pry
+
         expect(request.send(:http_header)).to eql(basic_header.merge(request.headers))
       end
     end

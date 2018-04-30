@@ -10,6 +10,8 @@ module Boechat
     module Service
       using StringExtensions
 
+      BASIC_HEADER = { 'User-Agent' => 'Boechat - API Version Verifier' }
+
       # Class responsible for make the request to one service
       class Request
         attr_reader :request, :response, :result, :service_uri, :verb, :parameters, :body, :headers
@@ -32,8 +34,8 @@ module Boechat
         private
 
         def http_header
-          basic_header = { 'User-Agent' => 'Boechat - API Version Verifier' }
-          basic_header.merge(@headers) if @headers
+          return BASIC_HEADER.merge(@headers) if @headers
+          BASIC_HEADER
         end
 
         def handle_request
