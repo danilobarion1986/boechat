@@ -4,6 +4,7 @@
 require 'bundler/setup'
 require 'boechat/core'
 require 'boechat/core/service/version_verifier'
+require 'boechat/core/service/result'
 require 'boechat/core/service/request'
 require 'boechat/core/service/request_list'
 require 'boechat/core/config_reader'
