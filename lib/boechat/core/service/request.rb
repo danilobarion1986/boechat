@@ -10,12 +10,12 @@ module Boechat
     module Service
       using StringExtensions
 
-      BASIC_HEADER = { 'User-Agent' => 'Boechat - API Version Verifier' }
 
       # Class responsible for make the request to one service
       class Request
         attr_reader :request, :response, :result, :service_uri, :verb, :parameters, :body, :headers
         HTTP_UNPROCESSABLE_ENTITY = 422
+        BASIC_HEADER = { 'User-Agent' => 'Boechat - API Version Verifier' }
 
         def initialize(service_uri, verb: :get, parameters: nil, body: nil, headers: nil)
           @service_uri = service_uri
