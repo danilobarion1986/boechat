@@ -2,6 +2,7 @@
 
 require 'oj'
 require_relative '../../internal/string_extensions'
+require_relative 'result'
 
 module Boechat
   module Core
@@ -10,7 +11,7 @@ module Boechat
 
       # Class responsible for make the request to one service
       class Request
-        attr_reader :request, :response, :parsed_response, :service_uri, :verb, :parameters, :body, :headers
+        attr_reader :request, :response, :result, :service_uri, :verb, :parameters, :body, :headers
         HTTP_UNPROCESSABLE_ENTITY = 422
 
         def initialize(service_uri, verb = :get, parameters = nil, body = nil, headers = nil)
@@ -38,17 +39,17 @@ module Boechat
         def handle_request
           @request.on_complete do |res|
             @response = res
-            @parsed_response = Oj.load(http_body(res), symbol_keys: true)
+            @result = Result.new(valid_response(res))
           end
           @request.run
         end
 
-        def http_body(response)
+        def valid_response(response)
           body = response.body
 
           return response_error(response) if body.empty?
           return response_invalid_format unless body.valid_json?
-          body
+          Oj.load(body, symbol_keys: true).merge(status: response.code)
         end
 
         def response_error(response)
