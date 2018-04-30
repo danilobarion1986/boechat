@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require_relative 'config/wrapper'
-require_relative 'config/schema_validator'
+require_relative 'wrapper'
+require_relative 'schema_validator'
 
 module Boechat
   module Core
@@ -12,7 +12,7 @@ module Boechat
         attr_reader :config_path
 
         def initialize
-          app_root = Pathname.new(File.expand_path('../../../', __dir__))
+          app_root = Pathname.new(File.expand_path('../../../../', __dir__))
           @config_path = File.join(app_root, 'config', 'boechat.yml')
         end
 

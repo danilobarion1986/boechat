@@ -2,7 +2,7 @@
 
 require_relative './request'
 require_relative './request_list'
-require_relative '../config_reader'
+require_relative '../config/reader'
 require 'typhoeus'
 require 'json'
 
