@@ -2,6 +2,7 @@
 
 require 'yaml'
 require_relative 'config_wrapper'
+require_relative 'config_schema_validator'
 
 module Boechat
   module Core
@@ -15,7 +16,14 @@ module Boechat
       end
 
       def call
-        ConfigWrapper.new(File.read(@config_path))
+        result = validate_config_schema
+        ConfigWrapper.new((result.success? ? result.output : {}), result.errors)
+      end
+
+      private
+
+      def validate_config_schema
+        ConfigSchemaValidator.call(File.read(@config_path))
       end
     end
   end

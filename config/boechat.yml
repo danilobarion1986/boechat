@@ -1,8 +1,10 @@
 # Describe all API healthcheck/status endpoints's that your application depends on!
 services:
-  - empresas:
-      url: http://empresasservice.ad.vagastec.com.br/status
-      status_endpoint: status
-  - processos:
-      url: http://qa-processosseletivosservice.ad.vagastec.com.br/healthcheck
-      status_endpoint: healthcheck
+  - name: empresas
+    base_url: http://empresasservice.ad.vagastec.com.br
+    status_endpoint: status
+    http_verb: get
+  - name: processos
+    base_url: http://qa-processosseletivosservice.ad.vagastec.com.br
+    status_endpoint: healthcheck
+    http_verb: get
