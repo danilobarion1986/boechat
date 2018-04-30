@@ -7,7 +7,7 @@ module Boechat
     module Service
       # Class responsible for store the response of the Request class
       class Result
-        attr_reader :parsed_response, :success, :failure
+        attr_reader :parsed_response
 
         def initialize(parsed_response)
           @parsed_response = parsed_response
