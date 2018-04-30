@@ -43,6 +43,7 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.12.0)
+    dry-validation-matchers (0.4.0)
     ethon (0.11.0)
       ffi (>= 1.3.0)
     ffi (1.9.23)
@@ -97,6 +98,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   codeclimate-test-reporter
   dry-validation
+  dry-validation-matchers (~> 0.4.0)
   pry
   rake (~> 10.0)
   rspec (~> 3.0)
