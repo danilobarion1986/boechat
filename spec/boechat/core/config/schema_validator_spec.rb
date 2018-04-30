@@ -10,7 +10,7 @@ RSpec.describe Boechat::Core::Config::SchemaValidator do
     context 'when the config schema is INVALID' do
       let(:config) { '{}' }
 
-      it 'returns and Dry::Validation::Result with errors' do
+      it 'returns and Dry::Validation::Result WITH errors' do
         result = subject.call(config)
 
         expect(result).to be_an_instance_of(Dry::Validation::Result)
@@ -23,7 +23,7 @@ RSpec.describe Boechat::Core::Config::SchemaValidator do
         "services:\n  - name: test\n    base_url: http://api.example.com.br\n"
       end
 
-      it 'returns and Dry::Validation::Result without errors' do
+      it 'returns and Dry::Validation::Result WITHOUTS errors' do
         result = subject.call(config)
 
         expect(result).to be_an_instance_of(Dry::Validation::Result)
