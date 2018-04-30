@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'dry-configurable'
+gem 'dry-validation'
 gem 'typhoeus'
 
 group :test do
