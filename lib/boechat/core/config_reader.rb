@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
+require_relative 'config_wrapper'
 
 module Boechat
   module Core
@@ -14,7 +15,7 @@ module Boechat
       end
 
       def call
-        YAML.safe_load(File.read(@config_path))
+        ConfigWrapper.new(File.read(@config_path))
       end
     end
   end
