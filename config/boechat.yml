@@ -1,3 +1,8 @@
 # Describe all API healthcheck/status endpoints's that your application depends on!
-- http://example-api.com/status
-- http://api.other.com/healthcheck
+services:
+  - empresas:
+      url: http://empresasservice.ad.vagastec.com.br/status
+      status_endpoint: status
+  - processos:
+      url: http://qa-processosseletivosservice.ad.vagastec.com.br/healthcheck
+      status_endpoint: healthcheck
