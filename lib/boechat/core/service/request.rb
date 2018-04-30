@@ -15,7 +15,7 @@ module Boechat
         attr_reader :request, :response, :result, :service_uri, :verb, :parameters, :body, :headers
         HTTP_UNPROCESSABLE_ENTITY = 422
 
-        def initialize(service_uri, verb = :get, parameters = nil, body = nil, headers = nil)
+        def initialize(service_uri, verb: :get, parameters: nil, body: nil, headers: nil)
           @service_uri = service_uri
           @verb = verb
           @parameters = parameters
@@ -32,9 +32,8 @@ module Boechat
         private
 
         def http_header
-          { 'User-Agent' => 'Boechat - API Version Verifier' }.tap do |header|
-            header.merge(@headers) if @headers
-          end
+          basic_header = { 'User-Agent' => 'Boechat - API Version Verifier' }
+          basic_header.merge(@headers) if @headers
         end
 
         def handle_request
