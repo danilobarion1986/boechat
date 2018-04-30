@@ -8,8 +8,6 @@ module Boechat
       # Class responsible for store the response of the Request class
       class Result
         attr_reader :parsed_response, :success, :failure
-        alias success? success
-        alias failure? failure
 
         def initialize(parsed_response)
           @parsed_response = parsed_response

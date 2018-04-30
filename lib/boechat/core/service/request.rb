@@ -6,6 +6,7 @@ require_relative 'result'
 
 module Boechat
   module Core
+    # Module to group all classes related to the Request/Response/Validation cycle
     module Service
       using StringExtensions
 
