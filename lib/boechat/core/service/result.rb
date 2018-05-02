@@ -14,11 +14,14 @@ module Boechat
         end
 
         def success?
-          @parsed_response && @parsed_response[:status] < 400
+          @parsed_response &&
+            @parsed_response[:status].positive? &&
+            @parsed_response[:status] < 400
         end
 
         def failure?
-          @parsed_response && @parsed_response[:status] >= 400
+          @parsed_response.nil? ||
+            (@parsed_response[:status].zero? || @parsed_response[:status] >= 400)
         end
       end
     end
