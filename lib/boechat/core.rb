@@ -3,7 +3,7 @@
 require 'boechat/internal/version'
 
 # :nodoc:
-module MyGem
+module Boechat
   # :nodoc:
   module Core
   end
