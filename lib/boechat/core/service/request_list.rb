@@ -5,30 +5,30 @@ module Boechat
     module Service
       # Class to save all user request objects to execute them one at a time or all in parallel
       class RequestList
-        attr_reader :requests
+        attr_reader :requesters
 
-        def initialize(requests = {})
-          @requests = requests
+        def initialize(requesters = {})
+          @requesters = requesters
         end
 
-        def call(request_identifier = nil)
-          if request_identifier.nil?
+        def call(requester_identifier = nil)
+          if requester_identifier.nil?
             hydra = Typhoeus::Hydra.hydra
-            requests.each_pair { |_key, request| hydra.queue(request.call) }
+            requesters.each_pair { |_key, requester| hydra.queue(requester.call) }
             hydra.run
-          elsif requests.key?(request_identifier)
-            requests[request_identifier].call
+          elsif requesters.key?(requester_identifier)
+            requesters[requester_identifier].call
           end
 
           self
         end
 
         def []=(key, requester)
-          requests[key] = requester
+          requesters[key] = requester
         end
 
         def [](key)
-          requests[key]
+          requesters[key]
         end
       end
     end
