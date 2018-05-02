@@ -46,10 +46,13 @@ RSpec.describe Boechat::Core::Service::Requester do
 
   describe '#call' do
     context 'when a VALID url is passed' do
-      let(:valid_url) { 'http://api.example.com/healthcheck' }
-
       it 'handle the request correctly' do
-        # request = subject.new(valid_url)
+        url = 'https://api.genderize.io/?name=peter'
+
+        requester = subject.new(url)
+        requester.call
+
+        expect(requester.result.success?).to be true
       end
     end
 
