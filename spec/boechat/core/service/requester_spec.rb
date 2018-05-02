@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'boechat/core/service/requester'
-require 'typhoeus'
-require 'pry'
 
 RSpec.describe Boechat::Core::Service::Requester do
   subject { described_class }
