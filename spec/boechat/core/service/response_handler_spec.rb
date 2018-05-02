@@ -52,7 +52,7 @@ RSpec.describe Boechat::Core::Service::ResponseHandler do
           it 'returns Hash with the correct structure and values' do
             handled_response = subject.call(failing_response)
 
-            expect(handled_response).to eql({ error: 'Service Internal Error', status: code })
+            expect(handled_response).to eql(error: 'Service Internal Error', status: code)
           end
         end
 
@@ -62,7 +62,7 @@ RSpec.describe Boechat::Core::Service::ResponseHandler do
           it 'returns Hash with the correct structure and values' do
             handled_response = subject.call(failing_response)
 
-            expect(handled_response).to eql({ error: 'Not Found', status: code })
+            expect(handled_response).to eql(error: 'Not Found', status: code)
           end
         end
 
@@ -72,7 +72,7 @@ RSpec.describe Boechat::Core::Service::ResponseHandler do
           it 'returns Hash with the correct structure and values' do
             handled_response = subject.call(failing_response)
 
-            expect(handled_response).to eql({ error: 'Service Unexpected Error', status: code })
+            expect(handled_response).to eql(error: 'Service Unexpected Error', status: code)
           end
         end
       end
@@ -86,10 +86,9 @@ RSpec.describe Boechat::Core::Service::ResponseHandler do
         it 'returns Hash with the correct structure and values' do
           handled_response = subject.call(failing_response)
 
-          expect(handled_response).to eql({ error: 'Invalid JSON format', status: 422 })
+          expect(handled_response).to eql(error: 'Invalid JSON format', status: 422)
         end
       end
     end
   end
 end
-

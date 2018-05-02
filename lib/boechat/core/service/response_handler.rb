@@ -16,7 +16,7 @@ module Boechat
 
         class << self
           def call(response)
-            raise ArgumentError.new('Argument must respond to :body and :code') unless valid_response(response)
+            raise ArgumentError, 'Argument must respond to :body and :code' unless valid_response(response)
             body = response.body
 
             return response_error(response) if body.empty?
