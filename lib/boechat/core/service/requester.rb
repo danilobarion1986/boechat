@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require 'oj'
-require 'json'
 require_relative '../../internal/string_extensions'
 require_relative 'result'
+require_relative 'response_handler'
 
 module Boechat
   module Core
@@ -14,7 +13,6 @@ module Boechat
       # Class responsible for make the request to one service
       class Requester
         attr_reader :request, :response, :result, :service_uri, :verb, :parameters, :body, :headers
-        HTTP_UNPROCESSABLE_ENTITY = 422
         BASIC_HEADER = { 'User-Agent' => 'Boechat - API Version Verifier' }.freeze
 
         def initialize(service_uri, verb: :get, parameters: nil, body: nil, headers: nil)
@@ -28,7 +26,11 @@ module Boechat
         end
 
         def call
-          handle_request
+          @request.on_complete do |res|
+            @response = res
+            @result = Result.new(ResponseHandler.call(res))
+          end
+          @request.run
         end
 
         private
@@ -36,39 +38,6 @@ module Boechat
         def http_header
           return BASIC_HEADER.merge(@headers) if @headers
           BASIC_HEADER
-        end
-
-        def handle_request
-          @request.on_complete do |res|
-            @response = res
-            @result = Result.new(valid_response(res))
-          end
-          @request.run
-        end
-
-        def valid_response(response)
-          body = response.body
-
-          return response_error(response) if body.empty?
-          return response_invalid_format unless body.valid_json?
-          Oj.load(body, symbol_keys: true).merge(status: response.code)
-        end
-
-        def response_error(response)
-          code = response.code
-
-          case code
-          when 404
-            Oj.load({ error: 'Not Found', status: code }.to_json, symbol_keys: true)
-          when 500
-            Oj.load({ error: 'Service Internal Error', status: code }.to_json, symbol_keys: true)
-          else
-            Oj.load({ error: 'Service Unexpected Error', status: code }.to_json, symbol_keys: true)
-          end
-        end
-
-        def response_invalid_format
-          Oj.load({ error: 'Invalid JSON format', status: HTTP_UNPROCESSABLE_ENTITY }.to_json)
         end
       end
     end
