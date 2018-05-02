@@ -33,8 +33,8 @@ Gem::Specification.new do |spec|
 
   # Dependencies that your gem needs at runtime
   spec.add_runtime_dependency 'dry-validation', '~> 0.11.1'
-  spec.add_runtime_dependency 'oj', '~> 3.5.0'
-  spec.add_runtime_dependency 'typhoeus', '~> 1.3.0'
+  spec.add_runtime_dependency 'oj', '~> 3.5'
+  spec.add_runtime_dependency 'typhoeus', '~> 1.3'
 
   # Dependencies that your gem needs only for development
   spec.add_development_dependency 'bundler', '~> 1.16'
