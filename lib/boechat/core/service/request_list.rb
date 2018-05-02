@@ -11,6 +11,9 @@ module Boechat
           @requesters = requesters
         end
 
+        # @todo Add support for multiple HTTP Clients with parallel requests
+        #   Initially only Typhoeus HTTP client is supported for make multiple API calls in parallel.
+        #   It will be good to support other clients, as the user wants to configure
         def call(requester_identifier = nil)
           if requester_identifier.nil?
             hydra = Typhoeus::Hydra.hydra
