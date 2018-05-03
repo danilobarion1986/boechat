@@ -4,6 +4,7 @@ lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'boechat/internal/version'
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name          = 'boechat'
   spec.version       = Boechat::Internal::VERSION
@@ -43,3 +44,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'yard', '~> 0.9'
 end
+# rubocop:enable Metrics/BlockLength

@@ -9,7 +9,7 @@ RSpec.describe Boechat::Core::Service::RequestList do
   let(:requester_two) { Boechat::Core::Service::Requester.new(url) }
 
   before { allow_any_instance_of(Proc).to receive(:call) }
-  subject { described_class.new({ requester_one: requester_one, requester_two: requester_two}) }
+  subject { described_class.new(requester_one: requester_one, requester_two: requester_two) }
 
   describe '#call' do
     context 'when an requester identifier IS passed' do
