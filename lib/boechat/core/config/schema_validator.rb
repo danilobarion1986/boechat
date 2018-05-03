@@ -12,6 +12,7 @@ module Boechat
             schema do
               required('name').filled(:str?)
               required('base_url').filled(:str?)
+              required('version').filled(:str?)
               optional('status_endpoint').filled(:str?)
             end
           end
