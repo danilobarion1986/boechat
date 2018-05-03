@@ -5,7 +5,7 @@ require 'typhoeus'
 module Boechat
   module Core
     module Service
-      # Class to save all user request objects to execute them one at a time or all in parallel
+      # Class to save all user Requester objects to execute them one at a time or all in parallel
       class RequestList
         attr_reader :requesters
 
