@@ -20,7 +20,7 @@ RSpec.describe Boechat::Core::Config::SchemaValidator do
 
     context 'when the config schema is VALID' do
       let(:config) do
-        "services:\n  - name: test\n    base_url: http://api.example.com.br\n"
+        "services:\n  - name: test\n    base_url: http://api.example.com.br\n    version: '> 1.14.0'"
       end
 
       it 'returns and Dry::Validation::Result WITHOUTS errors' do
