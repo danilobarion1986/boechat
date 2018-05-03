@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'typhoeus'
+
 module Boechat
   module Core
     module Service
@@ -17,7 +19,7 @@ module Boechat
         def call(requester_identifier = nil)
           if requester_identifier.nil?
             hydra = Typhoeus::Hydra.hydra
-            requesters.each_pair { |_key, requester| hydra.queue(requester.call) }
+            requesters.each_pair { |_key, requester| hydra.queue(requester.request) }
             hydra.run
           elsif requesters.key?(requester_identifier)
             requesters[requester_identifier].call
