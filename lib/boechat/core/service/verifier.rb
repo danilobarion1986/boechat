@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './request'
+require_relative './requester'
 require_relative './request_list'
 require_relative '../config/reader'
 require 'typhoeus'
@@ -14,7 +14,7 @@ module Boechat
         attr_reader :config, :request_list
 
         def initialize
-          @config = ConfigReader.new.call.config
+          @config = Config::Reader.new.call.config
           build_request_list
         end
 
@@ -27,9 +27,14 @@ module Boechat
         def build_request_list
           @request_list = RequestList.new
 
-          @config['services'].each do |service|
-            key, value = service.first
-            @request_list.requests[key] = Request.new(value['url'])
+          @config['services'].each_with_index do |service, index|
+            base_url = service['base_url']
+            url = if base_url.end_with?('/')
+                    "#{base_url}#{service['status_endpoint']}"
+                  else
+                    "#{base_url}/#{service['status_endpoint']}"
+                  end
+            @request_list.requesters[(service['name'] || index.to_s)] = Requester.new(url)
           end
         end
       end
