@@ -23,13 +23,13 @@ module Boechat
           @headers = headers
           @request = Typhoeus::Request.new(@service_uri, method: :get, params: @parameters,
                                                          body: @body, headers: http_header)
-        end
-
-        def call
           @request.on_complete do |res|
             @response = res
             @result = Result.new(ResponseHandler.call(res))
           end
+        end
+
+        def call
           @request.run
         end
 
