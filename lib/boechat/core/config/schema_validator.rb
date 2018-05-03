@@ -13,7 +13,6 @@ module Boechat
               required('name').filled(:str?)
               required('base_url').filled(:str?)
               optional('status_endpoint').filled(:str?)
-              optional('http_verb').filled(included_in?: %w[get post])
             end
           end
         end

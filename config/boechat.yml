@@ -3,8 +3,6 @@ services:
   - name: empresas
     base_url: http://empresasservice.ad.vagastec.com.br
     status_endpoint: status
-    http_verb: get
   - name: processos
     base_url: http://qa-processosseletivosservice.ad.vagastec.com.br
     status_endpoint: healthcheck
-    http_verb: get
