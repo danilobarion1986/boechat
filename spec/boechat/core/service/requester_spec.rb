@@ -12,7 +12,6 @@ RSpec.describe Boechat::Core::Service::Requester do
         request = subject.new(url)
 
         expect(request.service_uri).to eql(url)
-        expect(request.verb).to eql(:get)
         expect(request.parameters).to eql(nil)
         expect(request.body).to eql(nil)
         expect(request.headers).to eql(nil)
@@ -22,18 +21,15 @@ RSpec.describe Boechat::Core::Service::Requester do
 
     context 'when optional parameters are passed' do
       it 'creates an object with the correct attributes values' do
-        custom_verb = :post
         custom_parameters = { id: 1 }
         custom_body = { token: 'xyz' }
         custom_header = { 'TEST' => 'value' }
 
-        request = subject.new(url, verb: custom_verb,
-                                   parameters: custom_parameters,
+        request = subject.new(url, parameters: custom_parameters,
                                    body: custom_body,
                                    headers: custom_header)
 
         expect(request.service_uri).to eql(url)
-        expect(request.verb).to eql(custom_verb)
         expect(request.parameters).to eql(custom_parameters)
         expect(request.body).to eql(custom_body)
         expect(request.headers).to eql(custom_header)

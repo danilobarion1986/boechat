@@ -13,16 +13,15 @@ module Boechat
 
       # Class responsible for make the request to one service
       class Requester
-        attr_reader :request, :response, :result, :service_uri, :verb, :parameters, :body, :headers
+        attr_reader :request, :response, :result, :service_uri, :parameters, :body, :headers
         BASIC_HEADER = { 'User-Agent' => 'Boechat - API Version Verifier' }.freeze
 
-        def initialize(service_uri, verb: :get, parameters: nil, body: nil, headers: nil)
+        def initialize(service_uri, parameters: nil, body: nil, headers: nil)
           @service_uri = service_uri
-          @verb = verb
           @parameters = parameters
           @body = body
           @headers = headers
-          @request = Typhoeus::Request.new(@service_uri, method: @verb, params: @parameters,
+          @request = Typhoeus::Request.new(@service_uri, method: :get, params: @parameters,
                                                          body: @body, headers: http_header)
         end
 
