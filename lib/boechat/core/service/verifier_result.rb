@@ -13,21 +13,22 @@ module Boechat
       class VerifierResult
         include Internal
 
-        attr_reader :verifier
+        attr_reader :verifier, :output
 
         def initialize(verifier)
           raise BoechatError, "Verifier class expected, given #{verifier.class}." unless verifier.class == Verifier
           @verifier = verifier
+          @output = []
         end
 
         def call
-          [].tap do |output|
-            @verifier.request_list.requesters.each_pair do |key, requester|
-              output << { name: key,
-                          parsed_response: requester.result.parsed_response,
-                          valid_version: validate_response_version(key) }
-            end
+          @verifier.request_list.requesters.each_pair do |key, requester|
+            @output << { name: key,
+                        parsed_response: requester.result.parsed_response,
+                        valid_version: validate_response_version(key) } if requester.result
           end
+
+          self
         end
 
         private

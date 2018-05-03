@@ -2,6 +2,7 @@
 
 require_relative './requester'
 require_relative './request_list'
+require_relative './verifier_result'
 require_relative '../config/reader'
 require 'typhoeus'
 require 'json'
@@ -20,6 +21,7 @@ module Boechat
 
         def call(service = nil)
           @request_list.call(service)
+          VerifierResult.new(self)
         end
 
         private
