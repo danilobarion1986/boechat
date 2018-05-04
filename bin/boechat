@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/boechat_core'
+require_relative '../lib/boechat/core/command_runner'
+
+aliases = { 'v' => 'verify', 'c' => 'console' }
+
+command = ARGV.first
+Boechat::Core::CommandRunner.call(aliases[command] || command)
