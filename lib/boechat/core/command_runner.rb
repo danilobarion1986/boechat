@@ -13,7 +13,11 @@ module Boechat
           puts Boechat::Core::Service::Verifier.new.call.result
           puts '-' * 80
         else # runs help for help itself and any other not recognized command
-          puts "\nUSAGE: \n  boechat [COMMAND]\n\nCOMMANDS:\n h, help\n v, verify\n c, console"
+          puts "\nUSAGE:"
+          puts '  boechat [COMMAND]'
+          puts "\nCOMMANDS:"
+          puts '  h, help          # Shows help instructions'
+          puts "  v, verify        # Verifies versions of all services contained in boachat.yml file\n"
         end
       end
     end
