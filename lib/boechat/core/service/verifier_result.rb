@@ -15,42 +15,43 @@ module Boechat
 
         attr_reader :verifier, :output
 
-        def initialize(verifier)
-          raise BoechatError, "Verifier class expected, given #{verifier.class}." unless verifier.class == Verifier
-          @verifier = verifier
-          @output = []
-        end
+        class << self
+          def call(verifier)
+            raise BoechatError, "Verifier class expected, given #{verifier.class}." unless verifier.class == Verifier
+            @verifier = verifier
+            @output = []
 
-        def call
-          @verifier.request_list.requesters.each_pair do |key, requester|
-            @output << { name: key,
-                        parsed_response: requester.result.parsed_response,
-                        valid_version: validate_response_version(key) } if requester.result
+            @verifier.request_list.requesters.each_pair do |key, requester|
+              next unless requester.result
+              @output << { name: key,
+                           parsed_response: requester.result.parsed_response,
+                           valid_version: validate_response_version(key) }
+            end
+
+            @output
           end
 
-          self
-        end
+          private
 
-        private
+          def validate_response_version(requester_identifier)
+            service_config = get_service_config(requester_identifier)
+            current_version = get_service_current_version(requester_identifier)
 
-        def validate_response_version(requester_identifier)
-          service_config = get_service_config(requester_identifier)
-          current_version = get_service_current_version(requester_identifier)
+            operator, required_version = service_config['version'].split(' ')
 
-          operator, required_version = service_config['version'].split(' ')
-
-          current_version.send(operator.to_sym, required_version)
-        end
-
-        def get_service_config(requester_identifier)
-          services = @verifier.config['services'].select do |service|
-            service['name'] == requester_identifier
+            current_version.send(operator.to_sym, required_version)
           end
-          services.first
-        end
 
-        def get_service_current_version(requester_identifier)
-          @verifier.request_list[requester_identifier].result.parsed_response[:tag_versao]
+          def get_service_config(requester_identifier)
+            services = @verifier.config['services'].select do |service|
+              service['name'] == requester_identifier
+            end
+            services.first
+          end
+
+          def get_service_current_version(requester_identifier)
+            @verifier.request_list[requester_identifier].result.parsed_response[:tag_versao]
+          end
         end
       end
     end
