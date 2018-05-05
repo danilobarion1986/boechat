@@ -2,6 +2,6 @@
 
 module Boechat
   module Internal
-    VERSION = '0.0.1'
+    VERSION = '0.1.0-RC1'
   end
 end
