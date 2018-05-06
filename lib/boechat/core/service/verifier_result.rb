@@ -34,10 +34,13 @@ module Boechat
           def validate_response_version(requester_identifier)
             service_config = get_service_config(requester_identifier)
             current_version = get_service_current_version(requester_identifier)
+            return if current_version.nil?
 
             operator, required_version = service_config['version'].split(' ')
+            comparer_method = operator.to_sym
+            return if current_version.respond_to?(comparer_method)
 
-            current_version.send(operator.to_sym, required_version)
+            current_version.send(comparer_method, required_version)
           end
 
           def get_service_config(requester_identifier)
