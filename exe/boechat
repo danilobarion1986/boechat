@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/boechat_core'
-require_relative '../lib/boechat/core/command_runner'
+require 'boechat'
 
 aliases = { 'v' => 'verify', 'c' => 'console' }
 

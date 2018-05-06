@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../internal/string_extensions'
+require_relative '../../string_extensions'
 require_relative 'result'
 require_relative 'response_handler'
 require 'typhoeus'

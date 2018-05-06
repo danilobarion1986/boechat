@@ -3,7 +3,7 @@ AllCops:
 
 Lint/UselessAssignment:
   Exclude:
-    - 'lib/boechat/internal/version.rb'
+    - 'lib/boechat/version.rb'
 
 Metrics/LineLength:
   Max: 120

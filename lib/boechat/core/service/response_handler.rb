@@ -2,7 +2,7 @@
 
 require 'oj'
 require 'json'
-require_relative '../../internal/string_extensions'
+require_relative '../../string_extensions'
 
 module Boechat
   module Core

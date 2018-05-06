@@ -2,12 +2,11 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'boechat/internal/version'
+require 'boechat/version'
 
-# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name          = 'boechat'
-  spec.version       = Boechat::Internal::VERSION
+  spec.version       = Boechat::VERSION
   spec.authors       = ['Danilo Barion Nogueira']
   spec.email         = ['danilo.barion@gmail.com']
 
@@ -18,17 +17,15 @@ Gem::Specification.new do |spec|
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
-  # rubocop:disable Style/GuardClause
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   else
     raise 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end
-  # rubocop:enable Style/GuardClause
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features|bin)/}) }
-  spec.bindir        = 'bin'
-  spec.executables   = ['boechat']
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.bindir        = 'exe'
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.5.0'
   spec.metadata['yard.run'] = 'yri'

@@ -2,7 +2,7 @@
 
 require_relative './requester'
 require_relative './request_list'
-require_relative '../../internal/errors'
+require_relative '../../errors'
 require 'typhoeus'
 require 'json'
 
@@ -11,8 +11,6 @@ module Boechat
     module Service
       # Class responsible for call the endpoints and return all the results
       class VerifierResult
-        include Internal
-
         attr_reader :verifier, :output
 
         class << self

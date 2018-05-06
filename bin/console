@@ -2,24 +2,14 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require_relative '../lib/boechat_core'
-require_relative '../lib/boechat/core'
-require_relative '../lib/boechat/core/service/verifier'
-require_relative '../lib/boechat/core/service/result'
-require_relative '../lib/boechat/core/service/requester'
-require_relative '../lib/boechat/core/service/request_list'
-require_relative '../lib/boechat/core/service/response_handler'
-require_relative '../lib/boechat/core/service/verifier_result'
-require_relative '../lib/boechat/core/config/reader'
-require_relative '../lib/boechat/core/config/wrapper'
-require_relative '../lib/boechat/core/config/schema_validator'
-require_relative '../lib/boechat/internal/constants'
-require_relative '../lib/boechat/internal/version'
-require_relative '../lib/boechat/internal/errors'
+require 'boechat'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
 
-# rubocop:disable Lint/Debugger
-binding.irb
-# rubocop:enable Lint/Debugger
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+
+require "irb"
+IRB.start(__FILE__)
