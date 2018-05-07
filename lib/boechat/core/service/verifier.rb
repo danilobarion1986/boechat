@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './requester'
-require_relative './request_list'
+require_relative './requester_list'
 require_relative './verifier_result'
 require_relative '../config/reader'
 require 'typhoeus'
@@ -12,16 +12,16 @@ module Boechat
     module Service
       # Class responsible for call the endpoints and return all the results
       class Verifier
-        attr_reader :config, :request_list, :result
+        attr_reader :config, :requester_list, :result
 
         def initialize
           @config = Config::Reader.new.call.config
-          @request_list = RequestList.new
-          build_request_list
+          @requester_list = RequesterList.new
+          build_requester_list
         end
 
         def call(service = nil)
-          @request_list.call(service)
+          @requester_list.call(service)
           @result = VerifierResult.call(self)
 
           self
@@ -29,12 +29,12 @@ module Boechat
 
         private
 
-        def build_request_list
+        def build_requester_list
           @config['services'].each_with_index do |service, index|
             identifier = service['name'] || index.to_s
             url = build_url(service)
 
-            @request_list.requesters[identifier] = Requester.new(url)
+            @requester_list.requesters[identifier] = Requester.new(url)
           end
         end
 
