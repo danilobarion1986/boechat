@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+require 'boechat/core/service/requester'
 require 'typhoeus'
 
 module Boechat
   module Core
     module Service
       # Class to save all user Requester objects to execute them one at a time or all in parallel
-      class RequestList
+      class RequesterList
         attr_reader :requesters
 
         def initialize(requesters = {})
@@ -29,6 +30,7 @@ module Boechat
         end
 
         def []=(key, requester)
+          raise ArgumentError, 'Value must be a Requester instance' unless requester.class == Requester
           requesters[key] = requester
         end
 
