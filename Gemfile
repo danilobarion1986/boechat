@@ -2,17 +2,6 @@
 
 source 'https://rubygems.org'
 
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
 gemspec
-
-gem 'dry-validation'
-gem 'typhoeus'
-
-group :test do
-  gem 'codeclimate-test-reporter', require: false
-  gem 'simplecov', require: false
-end
-
-group :tools do
-  gem 'pry'
-  gem 'rubocop'
-end

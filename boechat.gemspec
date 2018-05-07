@@ -30,15 +30,17 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.5.0'
   spec.metadata['yard.run'] = 'yri'
 
-  # Dependencies that your gem needs at runtime
   spec.add_runtime_dependency 'dry-validation', '~> 0.11.1'
   spec.add_runtime_dependency 'oj', '~> 3.5'
   spec.add_runtime_dependency 'typhoeus', '~> 1.3'
 
-  # Dependencies that your gem needs only for development
-  spec.add_development_dependency 'bundler', '~> 1.16'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'yard', '~> 0.9'
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'rubycritic'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'codeclimate-test-reporter'
 end
-# rubocop:enable Metrics/BlockLength
