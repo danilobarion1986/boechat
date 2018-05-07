@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require 'boechat/core/service/response_handler'
 require 'json'
-require 'pry'
 
 RSpec.describe Boechat::Core::Service::ResponseHandler do
   subject { described_class }

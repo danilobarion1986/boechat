@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require 'boechat/core/config/reader'
 require 'boechat/core/config/wrapper'
 

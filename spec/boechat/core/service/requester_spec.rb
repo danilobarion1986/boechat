@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require 'boechat/core/service/requester'
 
 RSpec.describe Boechat::Core::Service::Requester do
