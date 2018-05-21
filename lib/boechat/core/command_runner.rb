@@ -8,23 +8,31 @@ module Boechat
     class CommandRunner
       def self.call(command)
         if command == 'verify'
-          puts '-' * 80
-          puts 'Version Verification Result'
-          puts Boechat::Core::Service::Verifier.new.call.result
-          puts '-' * 80
+          verify_output
         else # runs help for help itself and any other not recognized command
-          output = <<~OUTPUT
-
-                   USAGE:
-                     boechat [COMMAND]
-
-                   COMMANDS:
-                     h, help          # Shows help instructions
-                     v, verify        # Verifies versions of all services contained in boachat.yml file
-
-          OUTPUT
-          puts output
+          help_output
         end
+      end
+
+      private
+
+      def verify_output
+        puts '-' * 80
+        puts 'Version Verification Result'
+        puts Boechat::Core::Service::Verifier.new.call.result
+        puts '-' * 80
+      end
+
+      def help_output
+        output = <<~OUTPUT
+          USAGE:
+           boechat [COMMAND]
+          COMMANDS:
+           h, help          # Shows help instructions
+           v, verify        # Verifies versions of all services contained in boachat.yml file
+
+        OUTPUT
+        puts output
       end
     end
   end

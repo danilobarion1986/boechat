@@ -73,7 +73,7 @@ RSpec.describe Boechat::Core::Service::RequesterList do
 
           requester_list[:four] = requester_four
 
-          expect(requester_list.requesters.select { |key, value| key == :four}).to eql(four: requester_four)
+          expect(requester_list.requesters.select { |key, _value| key == :four }).to eql(four: requester_four)
         end
       end
 
