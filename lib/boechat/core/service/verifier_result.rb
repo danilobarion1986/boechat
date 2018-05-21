@@ -33,7 +33,7 @@ module Boechat
 
           def validate_response_version(requester_identifier)
             service_config = get_service_config(requester_identifier)
-            current_version = get_service_current_version(requester_identifier)
+            current_version = get_service_current_version(requester_identifier, service_config['version_key'])
             return if current_version.nil?
 
             operator, required_version = service_config['version'].split(' ')
@@ -50,8 +50,10 @@ module Boechat
             services.first
           end
 
-          def get_service_current_version(requester_identifier)
-            @verifier.requester_list[requester_identifier].result.parsed_response[:tag_versao]
+          def get_service_current_version(requester_identifier, version_key)
+            @verifier.requester_list[requester_identifier]
+                     .result
+                     .parsed_response[version_key.to_sym]
           end
         end
       end

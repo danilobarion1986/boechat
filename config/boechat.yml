@@ -3,8 +3,10 @@ services:
   - name: empresas
     base_url: http://empresasservice.ad.vagastec.com.br
     status_endpoint: status
+    version_key: tag_versao
     version: '>= 1.15.0'
   - name: processos
     base_url: http://qa-processosseletivosservice.ad.vagastec.com.br
     status_endpoint: healthcheck
+    version_key: tag_versao
     version: '> 1.14.0'
