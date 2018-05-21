@@ -50,7 +50,7 @@ module Boechat
             services.first
           end
 
-          def get_service_current_version(requester_identifier, version_key)
+          def get_service_current_version(requester_identifier, version_key = 'version')
             @verifier.requester_list[requester_identifier]
                      .result
                      .parsed_response[version_key.to_sym]
