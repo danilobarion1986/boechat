@@ -13,6 +13,7 @@ module Boechat
               required('name').filled(:str?)
               required('base_url').filled(:str?)
               required('version').filled(:str?)
+              optional('version_key').filled(:str?)
               optional('status_endpoint').filled(:str?)
             end
           end

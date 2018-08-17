@@ -16,7 +16,7 @@ module Boechat
 
         def initialize
           @config = Config::Reader.new.call.config
-          @requester_list = RequestList.new
+          @requester_list = RequesterList.new
           build_requester_list
         end
 

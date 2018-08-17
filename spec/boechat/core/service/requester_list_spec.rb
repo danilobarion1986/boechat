@@ -53,13 +53,11 @@ RSpec.describe Boechat::Core::Service::RequesterList do
     end
 
     context 'when an requester identifier IS NOT passed' do
-      context 'when the identifier NOT EXISTS in requesters hash' do
-        it 'run all the requesters' do
-          expect(requester_one).to receive(:request).once
-          expect(requester_two).to receive(:request).once
+      it 'run all the requesters' do
+        expect(requester_one).to receive(:request).once
+        expect(requester_two).to receive(:request).once
 
-          subject.call
-        end
+        subject.call
       end
     end
   end
@@ -75,7 +73,7 @@ RSpec.describe Boechat::Core::Service::RequesterList do
 
           requester_list[:four] = requester_four
 
-          expect(requester_list.requesters.select { |key, value| key == :four}).to eql(four: requester_four)
+          expect(requester_list.requesters.select { |key, _value| key == :four }).to eql(four: requester_four)
         end
       end
 
