@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './requester'
-require_relative './request_list'
+require_relative './requester_list'
 require_relative '../../errors'
 require 'typhoeus'
 require 'json'
@@ -19,7 +19,7 @@ module Boechat
             @verifier = verifier
             @output = []
 
-            @verifier.request_list.requesters.each_pair do |key, requester|
+            @verifier.requester_list.requesters.each_pair do |key, requester|
               next unless requester.result
               @output << { name: key,
                            parsed_response: requester.result.parsed_response,
@@ -51,7 +51,7 @@ module Boechat
           end
 
           def get_service_current_version(requester_identifier)
-            @verifier.request_list[requester_identifier].result.parsed_response[:tag_versao]
+            @verifier.requester_list[requester_identifier].result.parsed_response[:tag_versao]
           end
         end
       end
